@@ -16,18 +16,16 @@ import android.view.View;
 
 public class ToolManager{
     private Canvas refCanvas;
-    private ArrayList<CanvasTool> mTools;
-
     private CanvasTool mActiveTool;
 
     public ToolManager()
     {
-        mTools = new ArrayList<CanvasTool>();
+
     }
 
     public void registerTool(CanvasTool tool)
     {
-        mTools.add(tool);
+        mActiveTool = tool;
     }
 
     //Sends motion event to active tool
@@ -35,12 +33,6 @@ public class ToolManager{
     {
         if(mActiveTool == null) return false;
         return mActiveTool.sendMotionEvent(event);
-    }
-
-
-    public ArrayList<CanvasTool> getTools()
-    {
-        return mTools;
     }
 
 
