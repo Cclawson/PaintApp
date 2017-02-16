@@ -41,6 +41,7 @@ public class ToolManager{
         mTools = new ArrayList<>();
         mToolLayout = optionLayout;
         a = (SeekBar) main.findViewById(R.id.alphaSeek);
+        a.setProgress(255);
         r = (SeekBar) main.findViewById(R.id.redSeek);
         g = (SeekBar) main.findViewById(R.id.greenSeek);
         b = (SeekBar) main.findViewById(R.id.blueSeek);
@@ -75,18 +76,20 @@ public class ToolManager{
         mActiveTool.draw(canvas);
     }
 
-    public void registerTool(CanvasTool tool)
+    public void registerTool(CanvasTool tool, String name)
     {
         mTools.add(tool);
 
-        addSelectionOption( tool);
+        addSelectionOption(tool, name);
 
     }
 
 
-    private void addSelectionOption(final CanvasTool tool)
+    private void addSelectionOption(final CanvasTool tool, String name)
     {
         Button b = new Button(activity);
+        b.setText(name);
+
         final ToolManager manager = this;
 
 

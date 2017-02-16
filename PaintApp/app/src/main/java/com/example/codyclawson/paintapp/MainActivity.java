@@ -38,7 +38,9 @@ public class MainActivity extends AppCompatActivity {
         drawer.addDrawerListener(toggle);
         toggle.syncState();
         SymmetryTool s = new SymmetryTool();
-        mManager.registerTool(s);
+        mManager.registerTool(s, "Symmetry Tool");
+        mManager.registerTool(new SymmetryTool(), "Symmetry Tool2");
+
         mManager.setActiveTool(s);
 
 
