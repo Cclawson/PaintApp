@@ -7,6 +7,9 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.view.MotionEvent;
+import android.view.View;
+
+import java.util.ArrayList;
 
 /**
  * Created by CodyClawson on 2/15/2017.
@@ -27,6 +30,18 @@ public class SymmetryTool {
     private float distfromcenterY = 0;
     private boolean xSymmetry = true;
     private boolean ySymmetry = true;
+
+    private static ArrayList<View> views;
+
+
+    public  ArrayList<View> getViews()
+    {
+        return views;
+    }
+
+    public void setViews(ArrayList<View> views){
+        this.views =  views;
+    }
 
 
     public SymmetryTool(){
@@ -128,5 +143,19 @@ public class SymmetryTool {
                 break;
         }
         return true;
+    }
+
+    public void setWidth(float width)
+    {
+        mPaint.setStrokeWidth(width);
+    }
+
+    public void setColor(int a, int r, int g, int b)
+    {
+        mPaint.setARGB(a,r,g,b);
+    }
+
+    public void setString(String text){
+
     }
 }
