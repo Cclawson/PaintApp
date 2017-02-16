@@ -13,13 +13,26 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
-    <android.support.design.widget.NavigationView
-        android:id="@+id/nav_view"
-        android:layout_width="wrap_content"
+    <!-- Test layout -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+    </LinearLayout>
+
+    <!-- drawer -->
+    <LinearLayout
+        android:id="@+id/toolOptionBar"
+        android:orientation="vertical"
+        android:layout_marginTop="?attr/actionBarSize"
+        android:layout_width="175dp"
         android:layout_height="match_parent"
         android:layout_gravity="start"
-        android:fitsSystemWindows="true"
-        app:headerLayout="@layout/nav_header_side_nav"
-        app:menu="@menu/activity_side_nav_drawer" />
+        android:divider="@android:color/transparent"
+        android:dividerHeight="10dp"
+        android:background="#ffffff"
+        ></LinearLayout>
+
 
 </android.support.v4.widget.DrawerLayout>

@@ -13,7 +13,7 @@ import java.util.ArrayList;
  * Created by CodyClawson on 2/15/2017.
  */
 
-public class TextTool {
+public class TextTool implements CanvasTool{
 
         public int height;
         private Canvas mCanvas;
@@ -77,8 +77,8 @@ public class TextTool {
             mCanvas = c;
         }
 
-
-        public boolean handleEvent(MotionEvent event) {
+    @Override
+        public boolean sendMotionEvent(MotionEvent event) {
             float x = event.getX();
             float y = event.getY();
 
@@ -95,17 +95,17 @@ public class TextTool {
             }
             return true;
         }
-
+    @Override
         public void setWidth(float width) {
-            mPaint.setStrokeWidth(width);
+//            mPaint.setStrokeWidth(width);
         }
-
+    @Override
         public void setColor(int a, int r, int g, int b) {
             mPaint.setARGB(a, r, g, b);
         }
-
+    @Override
         public void setString(String text) {
-
+            this.text = text;
         }
     }
 

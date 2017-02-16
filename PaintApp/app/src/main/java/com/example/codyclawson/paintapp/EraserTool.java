@@ -4,13 +4,15 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffXfermode;
 import android.view.MotionEvent;
 
 /**
  * Created by BrandonBerning on 2/15/2017.
  */
 
-public class EraserTool {
+public class EraserTool implements CanvasTool{
 
     public int height;
     private Canvas mCanvas;
@@ -27,12 +29,10 @@ public class EraserTool {
 
         // and we set a new Paint with the desired attributes
         mPaint = new Paint();
-        mPaint.setAntiAlias(true);
-        mPaint.setColor(Color.WHITE);
-        mPaint.setStyle(Paint.Style.STROKE);
-        mPaint.setStrokeJoin(Paint.Join.ROUND);
-        mPaint.setStrokeWidth(100f);
-//        mPaint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
+
+        mPaint.setStrokeWidth(20f);
+        mPaint.setAlpha(0x00);
+        mPaint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
     }
 
     public void draw(Canvas canvas) {
@@ -71,8 +71,9 @@ public class EraserTool {
         mCanvas = c;
     }
 
+    @Override
 
-    public boolean handleEvent(MotionEvent event) {
+    public boolean sendMotionEvent(MotionEvent event) {
         float x = event.getX();
         float y = event.getY();
 
@@ -88,5 +89,19 @@ public class EraserTool {
                 break;
         }
         return true;
+    }
+
+    @Override
+    public void setColor(int a, int r, int g, int b) {
+    }
+
+    @Override
+    public void setWidth(float width) {
+        mPaint.setStrokeWidth(width);
+    }
+
+    @Override
+    public void setString(String text) {
+        //nothing
     }
 }

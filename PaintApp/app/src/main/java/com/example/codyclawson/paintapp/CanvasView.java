@@ -19,33 +19,28 @@ public class CanvasView extends View {
     private Bitmap mBitmap;
     private Canvas mCanvas;
     Context context;
-    SymmetryTool tool;
-    CircleDrawTool tool2;
-    TextTool tool3;
-    EraserTool tool4;
 
     Paint paint2 = new Paint();
 
 
+    ToolManager mManager;
+
     public CanvasView(Context c, AttributeSet attrs) {
         super(c, attrs);
         context = c;
-        tool = new SymmetryTool();
-        tool2 = new CircleDrawTool();
-        tool3 = new TextTool();
-        tool4 = new EraserTool();
-        paint2.setColor(Color.BLACK);
-        paint2.setStyle(Paint.Style.FILL);
+    }
+
+    public void Init(ToolManager manager)
+    {
+        mManager = manager;
     }
 
     // override onDraw
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        tool4.draw(canvas);
-        tool.draw(canvas);
-//        tool2.draw(canvas);
-        tool3.draw(canvas);
+
+        mManager.draw(canvas);
     }
 
     // override onSizeChanged
@@ -53,33 +48,23 @@ public class CanvasView extends View {
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         super.onSizeChanged(w, h, oldw, oldh);
 
-        // your Canvas will draw onto the defined Bitmap
         mBitmap = Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888);
         mCanvas = new Canvas(mBitmap);
 
-        tool.updateTool(mCanvas, w, h);
-        tool2.updateTool(mCanvas, w, h);
-        tool3.updateTool(mCanvas, w, h);
-        tool4.updateTool(mCanvas, w, h);
+        mManager.updateTool(mCanvas, w, h);
 
     }
 
     public void clearCanvas() {
-        tool.resetTool();
-        tool2.resetTool();
-        tool3.resetTool();
-        tool4.resetTool();
+        mManager.resetTool();
         invalidate();
     }
 
     //override the onTouchEvent
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        tool.handleEvent(event);
-        tool2.handleEvent(event);
-        tool3.handleEvent(event);
-        tool4.handleEvent(event);
+        boolean result = mManager.sendMotionEvent(event);
         invalidate();
-        return true;
+        return result;
     }
 }
