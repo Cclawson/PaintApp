@@ -14,23 +14,15 @@ import android.view.MotionEvent;
 
 public class ToolsActivity extends AppCompatActivity {
 
-    private ToolManager mManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tools);
 
-        mManager = new ToolManager();
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.addDrawerListener(toggle);
-        toggle.syncState();
+
     }
 
 
@@ -45,11 +37,7 @@ public class ToolsActivity extends AppCompatActivity {
     }
 
 
-    @Override
-    public boolean onTouchEvent(MotionEvent event)
-    {
-      return mManager.sendMotionEvent(event);
-    }
+
 
 
 

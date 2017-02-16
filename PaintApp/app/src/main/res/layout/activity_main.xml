@@ -1,4 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
+
+<android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawer_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:openDrawer="start">
+
+    <include
+        layout="@layout/app_bar_side_nav"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_main"
@@ -14,7 +30,154 @@
         android:id="@+id/signature_canvas"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginTop="?attr/actionBarSize"
         android:textColor="#FFFFFF" />
 
 
 </RelativeLayout>
+    <!-- drawer -->
+
+
+    <RelativeLayout
+        android:id="@+id/toolsAreaLayout"
+
+        android:orientation="vertical"
+        android:layout_marginTop="?attr/actionBarSize"
+        android:layout_width="200dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:divider="@android:color/transparent"
+        android:dividerHeight="10dp"
+        android:background="#ffffff"
+        >
+        <TextView
+            android:text="Alpha:"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/alphaSeek"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:id="@+id/alphaText" />
+
+
+        <TextView
+            android:text="Red:   "
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/redSeek"
+            android:layout_below="@id/alphaText"
+            android:id="@+id/redText" />
+
+        <TextView
+            android:text="Green:"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/greenSeek"
+            android:layout_below="@id/alphaText"
+            android:id="@+id/greenText" />
+        <TextView
+            android:text="Blue: "
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/blueSeek"
+            android:layout_below="@id/alphaText"
+            android:id="@+id/blueText" />
+
+        <TextView
+            android:text="Width:"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/widthSeek"
+            android:layout_below="@id/blueText"
+            android:id="@+id/widthText" />
+
+
+        <SeekBar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_toEndOf="@id/alphaText"
+            android:layout_toRightOf="@id/alphaText"
+            android:max="255"
+            android:id="@+id/alphaSeek" />
+
+        <SeekBar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_toEndOf="@id/redText"
+            android:layout_toRightOf="@id/redText"
+            android:layout_below="@id/alphaSeek"
+            android:max="255"
+            android:id="@+id/redSeek" />
+
+        <SeekBar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_toEndOf="@id/greenText"
+            android:layout_toRightOf="@id/greenText"
+            android:layout_below="@id/redSeek"
+            android:max="255"
+            android:id="@+id/greenSeek" />
+
+        <SeekBar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/greenSeek"
+            android:layout_toEndOf="@id/blueText"
+            android:layout_toRightOf="@id/blueText"
+            android:layout_marginTop="10dp"
+            android:max="255"
+            android:id="@+id/blueSeek" />
+
+        <SeekBar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/blueSeek"
+            android:layout_toEndOf="@id/blueText"
+            android:layout_toRightOf="@id/blueText"
+            android:layout_marginTop="10dp"
+            android:max="255"
+            android:id="@+id/widthSeek" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:hint="Text"
+            android:ems="10"
+            android:id="@+id/textOption"
+            android:layout_below="@+id/widthSeek"
+            android:layout_centerHorizontal="true" />
+
+        <Button
+            android:text="Set Options"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/buttonSetOptions"
+            android:layout_below="@+id/textOption"
+            android:onClick="onOptionButtonClicked"
+            android:layout_centerHorizontal="true" />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/buttonSetOptions"
+            android:id="@+id/toolScrollArea"
+            >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/toolSelectArea"
+            >
+
+        </LinearLayout>
+
+        </ScrollView>
+
+
+    </RelativeLayout>
+
+
+</android.support.v4.widget.DrawerLayout>

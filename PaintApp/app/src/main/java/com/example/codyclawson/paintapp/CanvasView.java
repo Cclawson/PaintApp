@@ -17,20 +17,26 @@ public class CanvasView extends View {
     private Bitmap mBitmap;
     private Canvas mCanvas;
     Context context;
-    SymmetryTool tool;
 
+
+    ToolManager mManager;
 
     public CanvasView(Context c, AttributeSet attrs) {
         super(c, attrs);
         context = c;
-        tool = new SymmetryTool();
+
+    }
+
+    public void Init(ToolManager manager)
+    {
+        mManager = manager;
     }
 
     // override onDraw
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        tool.draw(canvas);
+        mManager.draw(canvas);
     }
 
     // override onSizeChanged
@@ -42,19 +48,19 @@ public class CanvasView extends View {
         mBitmap = Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888);
         mCanvas = new Canvas(mBitmap);
 
-        tool.updateTool(mCanvas, w, h);
+        mManager.updateTool(mCanvas, w, h);
     }
 
     public void clearCanvas() {
-        tool.resetTool();
+        mManager.resetTool();
         invalidate();
     }
 
     //override the onTouchEvent
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        tool.handleEvent(event);
+        boolean result = mManager.sendMotionEvent(event);
         invalidate();
-        return true;
+        return result;
     }
 }

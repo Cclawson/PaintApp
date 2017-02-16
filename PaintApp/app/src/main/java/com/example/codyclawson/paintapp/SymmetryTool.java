@@ -7,12 +7,15 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.view.MotionEvent;
+import android.view.View;
+
+import java.util.ArrayList;
 
 /**
  * Created by CodyClawson on 2/15/2017.
  */
 
-public class SymmetryTool {
+public class SymmetryTool implements CanvasTool {
 
     public int height;
     private Canvas mCanvas;
@@ -41,6 +44,22 @@ public class SymmetryTool {
         mPaint.setStyle(Paint.Style.STROKE);
         mPaint.setStrokeJoin(Paint.Join.ROUND);
         mPaint.setStrokeWidth(4f);
+    }
+
+
+    @Override
+    public void setColor(int a, int r, int g, int b) {
+        mPaint.setARGB(a,r,g,b);
+    }
+
+    @Override
+    public void setWidth(float width) {
+        mPaint.setStrokeWidth(width);
+    }
+
+    @Override
+    public void setString(String text) {
+        //nothing
     }
 
     public void draw(Canvas canvas) {
@@ -111,11 +130,11 @@ public class SymmetryTool {
         centerY = h / 2;
     }
 
+    @Override
+    public boolean sendMotionEvent(MotionEvent event) {
 
-    public boolean handleEvent(MotionEvent event) {
         float x = event.getX();
         float y = event.getY();
-
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
                 startTouch(x, y);
@@ -128,5 +147,6 @@ public class SymmetryTool {
                 break;
         }
         return true;
+
     }
 }
